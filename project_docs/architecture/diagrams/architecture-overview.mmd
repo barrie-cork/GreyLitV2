@@ -1,0 +1,49 @@
+graph TD
+    %% API Gateway Layer
+    Client([Client]) --> Gateway[Kong API Gateway]
+    Gateway --> Auth[Authentication Service]
+    
+    %% Core Services
+    Gateway --> Dashboard[Dashboard Service]
+    Gateway --> SearchConfig[Search Configuration Service]
+    
+    %% Search & Processing Flow
+    SearchConfig --> |Configure Search|Strategy[Search Strategy Service]
+    SearchConfig --> |Upload Guidelines|DocProc[Document Processing Service]
+    
+    %% Document Processing
+    DocProc --> |Store Vectors|VecDB[(Pinecone)]
+    DocProc --> |Update Graph|Neo4j[(Neo4j)]
+    
+    %% Search Flow
+    Strategy --> |Query|Neo4j
+    Strategy --> |LLM Integration|OpenRouter[OpenRouter API]
+    Strategy --> |Execute Search|Execution[Search Execution Service]
+    
+    %% Rate Limiting & Execution
+    Execution --> |Rate Limited|Redis[(Redis)]
+    Execution --> |Query|SERP[SERP APIs]
+    Execution --> |Crawl|Crawler[Web Crawler Service]
+    
+    %% Results Processing
+    SERP --> |Process Results|Results[Results Processing Service]
+    Crawler --> |Process Content|DocProc
+    Results --> |Store|MongoDB[(MongoDB)]
+    
+    %% Reporting
+    Results --> |Generate|Report[Reporting Service]
+    Report --> |Update|Dashboard
+    
+    %% Event Bus
+    RabbitMQ{RabbitMQ} --> |Events|Services[All Services]
+    
+    %% Styling
+    classDef service fill:#f9f,stroke:#333,stroke-width:2px
+    classDef database fill:#bbb,stroke:#333,stroke-width:2px
+    classDef external fill:#bbf,stroke:#333,stroke-width:2px
+    classDef messagebus fill:#fbf,stroke:#333,stroke-width:2px
+    
+    class Auth,Dashboard,SearchConfig,Strategy,DocProc,Execution,Crawler,Results,Report service
+    class VecDB,Neo4j,Redis,MongoDB database
+    class OpenRouter,SERP external
+    class RabbitMQ messagebus
