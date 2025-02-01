@@ -3,8 +3,9 @@
 ## Core Technologies
 | Technology | Version | Purpose | Rationale |
 |------------|---------|---------|-----------|
-| React.js | 18.2.0 | Frontend framework | Stable version with concurrent rendering |
-| Node.js | 20.11.1 | Backend runtime | LTS version with ES2023 support |
+| Node.js | 18.17.1 | Backend runtime | LTS version aligned with PRD requirements |
+| LangChain | 0.0.347 | AI workflow orchestration | Provides required document loaders and Neo4j integration |
+| Pinecone | 2.2.2 | Vector search | Compatible with LangChain's retrieval modules |
 
 ## Infrastructure Components
 ### API Gateway
@@ -42,9 +43,9 @@
 ## AI/ML Components
 | Component | Version | Integration Point |
 |-----------|---------|-------------------|
-| LangChain Community | 0.2.1 | Document processing pipeline |
-| LangChain Neo4j | 0.1.7 | Knowledge graph operations |
-| ScrapingAnt | 1.3.0 | Web content extraction |
+| LangChain Community | 0.0.347 | Document processing pipeline |
+| LangChain Neo4j | 0.0.347 | Knowledge graph operations | 
+| ScrapingAnt | 1.0.5 | Web content extraction |
 
 ## Security
 | Component | Version | Standard |
@@ -53,22 +54,20 @@
 | bcrypt | 5.1.1 | NIST SP 800-63B |
 
 ## Compatibility Matrix
-| Component       | Node 20 | React 18 | MongoDB 7 | Neo4j 5 |
+| Component       | Node 18 | React 18 | MongoDB 7 | Neo4j 5 |
 |-----------------|---------|----------|-----------|---------|
-| Express 4.19.2  | ✓       | -        | ✓         | -       |
-| LangChain 0.2.1 | ✓       | -        | ✓         | ✓       |
-| Redis 7.2.4     | ✓       | -        | -         | -       |
+| Express 4.18.2  | ✓       | -        | ✓         | -       |
+| LangChain 0.0.347 | ✓      | -        | ✓         | ✓       |
+| Redis 7.0.11    | ✓       | -        | -         | -       |
 
 ## Version Lock Rationale
-1. All versions verified against Node.js 20 LTS
-2. Security patches current as of July 2024
-3. LangChain components aligned with document processing requirements
-4. Neo4j driver compatible with OpenSSL 3.0+
+1. Node.js 18.17.1 matches LTS requirements from PRD
+2. LangChain 0.0.347 contains exact document loader versions needed
+3. Pinecone 2.2.2 validated with LangChain's vector store integration
+4. Neo4j driver compatibility maintained through LangChain's graph modules
 
 ## System Requirements
-- **Node.js**: ≥20.11.1 (required for async hooks)
-- **OpenSSL**: ≥3.0 (required for Neo4j encryption)
-- **Docker**: ≥24.0.7 (required for compose v2)
-- **Hardware**: AVX2 instruction set (required for Pinecone)
+- **Node.js**: =18.17.1 (required for LTS support)
+- **Pinecone**: Requires 2.2.x client for embedding workflows
 
 > **Critical Note**: All versions are exact (no caret ^ or tilde ~) to ensure reproducible builds across environments.
