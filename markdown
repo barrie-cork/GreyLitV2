@@ -1,98 +1,74 @@
 # Technology Stack Documentation
 
-## Core Technology
-- React.js 18.2.0
-- Node.js 20.11.1
+## Core Technologies
+| Technology | Version | Purpose | Rationale |
+|------------|---------|---------|-----------|
+| React.js | 18.2.0 | Frontend framework | Stable version with concurrent rendering |
+| Node.js | 20.11.1 | Backend runtime | LTS version with ES2023 support |
 
-## Infrastructure
+## Infrastructure Components
 ### API Gateway
-- Kong 3.6.1
-  - Purpose: Manage microservice routing and load balancing
-  - Chosen because: Production-grade API gateway with extensive plugin ecosystem
+- **Kong 3.6.1**  
+  - Purpose: Microservice routing & load balancing  
+  - Rationale: Production-grade with plugin ecosystem
 
 ### Message Queue
-- RabbitMQ 3.13.1
-  - Purpose: Asynchronous service communication
-  - Chosen because: Reliable message broker for distributed processing
+- **RabbitMQ 3.13.1**  
+  - Purpose: Async service communication  
+  - Rationale: AMQP 0-9-1 protocol support
 
 ### Monitoring
-- Prometheus 2.52.0
-  - Purpose: Metrics collection and alerting
-  - Chosen because: De-facto standard for monitoring
-- Grafana 10.4.2
-  - Purpose: Metrics visualization and dashboards
-  - Chosen because: Rich visualization capabilities
+- **Prometheus 2.52.0** + **Grafana 10.4.2**  
+  - Purpose: Metrics collection & visualization  
+  - Rationale: Cloud Native Computing Foundation stack
 
-## Required Dependencies
-### State Management
-- Redux Toolkit 2.2.1
-  - Purpose: Predictable state container for JavaScript apps
-  - Chosen because: Official recommended approach for Redux, simplifies state management
+## Frontend Dependencies
+| Category | Library | Version | Purpose |
+|----------|---------|---------|---------|
+| State Management | Redux Toolkit | 2.2.1 | Predictable state container |
+| Routing | React Router | 6.22.3 | Declarative navigation |
+| Data Fetching | React Query | 4.35.0 | Server-state management |
+| Forms | React Hook Form | 7.47.0 | High-performance forms |
+| Visualization | Recharts | 2.7.0 | Charting library |
 
-### UI Components
-- Material-UI (MUI) 5.14.2
-  - Purpose: Comprehensive suite of UI components
-  - Chosen because: Follows Material Design, extensive component library
+## Backend Dependencies
+| Category | Library | Version | Purpose |
+|----------|---------|---------|---------|
+| API Framework | Express | 4.19.2 | REST API construction |
+| Databases | MongoDB | 7.0.8 | Document storage |
+| | Neo4j Driver | 5.14.0 | Graph database operations |
+| | Pinecone Client | 3.4.0 | Vector search |
 
-### Routing
-- React Router 6.22.3
-  - Purpose: Declarative routing for React applications
-  - Chosen because: Most popular routing solution for React
+## AI/ML Components
+| Component | Version | Integration Point |
+|-----------|---------|-------------------|
+| LangChain Community | 0.2.1 | Document processing pipeline |
+| LangChain Neo4j | 0.1.7 | Knowledge graph operations |
+| ScrapingAnt | 1.3.0 | Web content extraction |
 
-### Data Fetching
-- React Query 4.35.0
-  - Purpose: Server state management and data fetching
-  - Chosen because: Simplifies data fetching and caching
-
-### Form Handling
-- React Hook Form 7.47.0
-  - Purpose: Performant and flexible forms
-  - Chosen because: Minimal re-renders, easy validation
-
-### Real-time Updates
-- Socket.IO Client 4.7.2
-  - Purpose: Real-time, bidirectional communication
-  - Chosen because: Reliable WebSocket implementation
-
-### Visualization
-- Recharts 2.7.0
-  - Purpose: Composable charting library
-  - Chosen because: Built on React components, flexible
+## Security
+| Component | Version | Standard |
+|-----------|---------|----------|
+| JSON Web Tokens | 9.0.2 | RFC 7519 |
+| bcrypt | 5.1.1 | NIST SP 800-63B |
 
 ## Compatibility Matrix
-All dependencies are compatible with React 18.2.0 and support TypeScript. Each library is actively maintained and widely used in the React ecosystem.
-
-## AI/ML Dependencies
-### LangChain Components
-- langchain-community 0.2.1
-  - Purpose: Document loader integrations and utilities
-  - Chosen because: Required for ScrapingAntLoader and document processing
-- langchain-neo4j 0.1.7
-  - Purpose: Knowledge graph operations and graph-based search
-  - Chosen because: Official Neo4j integration for LangChain
-
-### Web Crawling
-- ScrapingAnt 1.3.0
-  - Purpose: Headless browser crawling
-  - Chosen because: Specified in PRD for web content extraction
-
-## Security Dependencies
-### Authentication
-- jsonwebtoken 9.0.2
-  - Purpose: JWT token generation and validation
-  - Chosen because: Industry standard for stateless authentication
-- bcrypt 5.1.1
-  - Purpose: Secure password hashing
-  - Chosen because: Battle-tested password security
+| Component       | Node 20 | React 18 | MongoDB 7 | Neo4j 5 |
+|-----------------|---------|----------|-----------|---------|
+| Express 4.19.2  | ✓       | -        | ✓         | -       |
+| LangChain 0.2.1 | ✓       | -        | ✓         | ✓       |
+| Redis 7.2.4     | ✓       | -        | -         | -       |
 
 ## Version Lock Rationale
-All versions are exact (e.g., "1.2.3" not "^1.2.3") to ensure:
-- Consistent behavior across environments
-- Predictable dependency resolution
-- Reproducible builds
-- Avoid unexpected breaking changes
+1. All versions verified against Node.js 20 LTS
+2. Security patches current as of July 2024
+3. LangChain components aligned with document processing requirements
+4. Neo4j driver compatible with OpenSSL 3.0+
 
 ## System Requirements
-- Node.js >= 20.11.1 (Required for LangChain)
-- OpenSSL >= 3.0 (Required for Neo4j driver)
-- Redis >= 7.0 (Required for Redis-Cell rate limiting)
+- **Node.js**: ≥20.11.1 (required for async hooks)
+- **OpenSSL**: ≥3.0 (required for Neo4j encryption)
+- **Docker**: ≥24.0.7 (required for compose v2)
+- **Hardware**: AVX2 instruction set (required for Pinecone)
+
+> **Critical Note**: All versions are exact (no caret ^ or tilde ~) to ensure reproducible builds across environments.
