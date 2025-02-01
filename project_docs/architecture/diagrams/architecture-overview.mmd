@@ -22,7 +22,7 @@ graph TD
     
     %% Rate Limiting & Execution
     Execution --> |Rate Limited|Redis[(Redis)]
-    Execution --> |Query|SERP[SERP APIs]
+    Execution --> |Query|SERP[Search Engine APIs]
     Execution --> |Crawl|Crawler[Web Crawler Service]
     
     %% Results Processing

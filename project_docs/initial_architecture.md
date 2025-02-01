@@ -166,10 +166,10 @@ interface IWebCrawler {
 ### Infrastructure Layer
 
 #### Service Integration Layer
-- **Search Services**
-  - SERP API Integration Service
-  - SERPER API Integration Service
-  - DuckDuckGo API Integration Service
+- **Search Engine Services**
+  - Google Custom Search Integration Service
+  - Bing Web Search Integration Service
+  - DuckDuckGo Search Integration Service
 - **AI Services**
   - OpenRouter API Integration Service
 - **Web Services**
@@ -358,7 +358,7 @@ interface Event {
    - Semantic search indices
 
 ### External API Contracts
-- SERP API integration specifications
+- Search Engine API integration specifications
 - OpenRouter API integration
 - ScrapingAnt integration
 
