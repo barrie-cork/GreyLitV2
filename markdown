@@ -38,14 +38,14 @@
 | API Framework | Express | 4.19.2 | REST API construction |
 | Databases | MongoDB | 7.0.8 | Document storage |
 | | Neo4j Driver | 5.14.0 | Graph database operations |
-| | Pinecone Client | 3.4.0 | Vector search |
+| | Pinecone Client | 2.2.2 | Vector search |
 
 ## AI/ML Components
 | Component | Version | Integration Point |
 |-----------|---------|-------------------|
 | LangChain Community | 0.0.347 | Document processing pipeline |
 | LangChain Neo4j | 0.0.347 | Knowledge graph operations | 
-| ScrapingAnt | 1.0.5 | Web content extraction |
+| ScrapingAnt | 1.3.1 | Web content extraction |
 
 ## Security
 | Component | Version | Standard |
@@ -54,11 +54,11 @@
 | bcrypt | 5.1.1 | NIST SP 800-63B |
 
 ## Compatibility Matrix
-| Component       | Node 18 | React 18 | MongoDB 7 | Neo4j 5 |
-|-----------------|---------|----------|-----------|---------|
-| Express 4.18.2  | ✓       | -        | ✓         | -       |
-| LangChain 0.0.347 | ✓      | -        | ✓         | ✓       |
-| Redis 7.0.11    | ✓       | -        | -         | -       |
+| Component       | Node 18 | React 18 | MongoDB 7 | Neo4j 5 | Pinecone 2.2 |
+|-----------------|---------|----------|-----------|---------|--------------|
+| Express 4.19.2  | ✓       | -        | ✓         | -       | ✓            |
+| LangChain 0.0.347 | ✓      | -        | ✓         | ✓       | ✓            |
+| Redis 7.0.11    | ✓       | -        | -         | -       | -            |
 
 ## Version Lock Rationale
 1. Node.js 18.17.1 matches LTS requirements from PRD
