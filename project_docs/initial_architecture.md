@@ -165,13 +165,15 @@ interface IWebCrawler {
 
 ### Infrastructure Layer
 
-#### External Services Integration
-- **SERP APIs**
-  - SERP API
-  - SERPER API
-  - DuckDuckGo API
-- **OpenRouter API** (LLM access)
-- **ScrapingAnt** (web crawling)
+#### Service Integration Layer
+- **Search Services**
+  - SERP API Integration Service
+  - SERPER API Integration Service
+  - DuckDuckGo API Integration Service
+- **AI Services**
+  - OpenRouter API Integration Service
+- **Web Services**
+  - ScrapingAnt Integration Service
 
 #### Persistence Layer
 1. **MongoDB**
