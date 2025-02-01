@@ -1,0 +1,19 @@
+{
+  "name": "grey-lit-search",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "packages/shared/*",
+    "packages/services/*",
+    "packages/config/*"
+  ],
+  "scripts": {
+    "build": "yarn workspaces run build",
+    "test": "yarn workspaces run test",
+    "clean": "yarn workspaces run clean"
+  },
+  "engines": {
+    "node": "18.17.1",
+    "yarn": ">=1.22.0"
+  }
+}
