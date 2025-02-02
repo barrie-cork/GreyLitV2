@@ -13,6 +13,10 @@ node_modules/
 dist/
 build/
 *.tsbuildinfo
+*.js
+*.js.map
+*.d.ts
+*.d.ts.map
 
 # IDE
 .idea/
@@ -53,3 +57,5 @@ docker-compose.override.yml
 
 # Development
 .aider*
+aider_ve/
+app_env/
