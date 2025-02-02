@@ -24,6 +24,11 @@
     "node": "18.17.1",
     "yarn": ">=1.22.0"
   },
+  "packageManager": "yarn@1.22.19",
+  "volta": {
+    "node": "18.17.1",
+    "yarn": "1.22.19"
+  },
   "devDependencies": {
     "@types/jest": "^29.5.14",
     "@types/node": "^18.17.1",
