@@ -8,12 +8,17 @@
     "packages/config/*"
   ],
   "scripts": {
-    "build": "yarn workspaces run build",
+    "build": "tsc --build",
     "test": "yarn workspaces run test",
-    "clean": "yarn workspaces run clean"
+    "clean": "yarn workspaces run clean",
+    "dev": "yarn workspaces run dev"
   },
   "engines": {
     "node": "18.17.1",
     "yarn": ">=1.22.0"
+  },
+  "devDependencies": {
+    "typescript": "5.0.4",
+    "@types/node": "^18.17.1"
   }
 }
