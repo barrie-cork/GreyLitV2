@@ -9,8 +9,9 @@
     "packages/config/*"
   ],
   "scripts": {
-    "build": "yarn workspace @grey-lit/types build && yarn workspace @grey-lit/utils build && tsc -p packages/services/tsconfig.production.json",
-    "build:dev": "yarn workspace @grey-lit/types build && yarn workspace @grey-lit/utils build && tsc -p packages/services/tsconfig.development.json",
+    "build:shared": "yarn workspace @grey-lit/types build && yarn workspace @grey-lit/utils build",
+    "build": "yarn build:shared && tsc -p packages/services/tsconfig.production.json",
+    "build:dev": "yarn build:shared && tsc -p packages/services/tsconfig.development.json",
     "test": "yarn workspaces run test",
     "clean": "yarn workspaces run clean",
     "dev": "yarn workspaces run dev",
