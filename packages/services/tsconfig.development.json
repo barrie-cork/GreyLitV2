@@ -5,8 +5,8 @@
     "declarationMap": true,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
-    "rootDir": ".",
-    "outDir": "./dist"
+    "composite": true,
+    "declaration": true
   },
   "include": [
     "./*/src/**/*"
