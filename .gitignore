@@ -1,5 +1,3 @@
-.aider*
-.env
 # Dependencies
 node_modules/
 .yarn/*
@@ -8,6 +6,8 @@ node_modules/
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+.pnp/
+.pnp.js
 
 # Build outputs
 dist/
@@ -31,10 +31,25 @@ yarn-error.log*
 .env
 .env.*
 !.env.example
+.env.local
+.env.*.local
+
+# Testing
+coverage/
+.nyc_output/
 
 # OS
 .DS_Store
 Thumbs.db
 
-# Testing
-coverage/
+# Docker
+.docker/
+docker-compose.override.yml
+
+# Temporary files
+*.swp
+*.swo
+*~
+
+# Development
+.aider*
