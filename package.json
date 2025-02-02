@@ -9,7 +9,7 @@
     "packages/config/*"
   ],
   "scripts": {
-    "build:shared": "yarn workspace @grey-lit/types build && yarn workspace @grey-lit/utils build",
+    "build:shared": "tsc --build packages/shared/types && tsc --build packages/shared/utils",
     "build": "yarn clean && yarn build:shared && tsc -p packages/services/tsconfig.production.json",
     "build:dev": "yarn clean && yarn build:shared && tsc -p packages/services/tsconfig.development.json",
     "test": "yarn workspaces run test",
