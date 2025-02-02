@@ -17,7 +17,8 @@
     "dev": "yarn workspaces run dev",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
-    "format": "prettier --write \"**/*.{ts,json,md}\""
+    "format": "prettier --write \"**/*.{ts,json,md}\"",
+    "prepare": "husky install"
   },
   "engines": {
     "node": "18.17.1",
@@ -32,6 +33,17 @@
     "prettier": "^2.8.7",
     "typescript": "5.0.4",
     "@types/node": "^18.17.1",
-    "@types/jest": "^29.5.12"
+    "@types/jest": "^29.5.12",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.2"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md}": [
+      "prettier --write"
+    ]
   }
 }
