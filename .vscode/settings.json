@@ -6,6 +6,7 @@
     "source.organizeImports": true
   },
   "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
   "files.eol": "\n",
   "files.trimTrailingWhitespace": true,
   "files.insertFinalNewline": true,
@@ -23,6 +24,19 @@
   "search.exclude": {
     "**/node_modules": true,
     "**/dist": true,
-    "**/.git": true
+    "**/.git": true,
+    "**/coverage": true
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
 }
