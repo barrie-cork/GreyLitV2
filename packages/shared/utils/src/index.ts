@@ -1,7 +1,10 @@
-// Utility functions will be exported here
+/**
+ * Validates an email address
+ * @param email The email address to validate
+ * @returns true if the email is valid, false otherwise
+ */
 export const isValidEmail = (email: string): boolean => {
+  if (!email) return false;
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email);
 };
-
-// More utilities will be added as needed
