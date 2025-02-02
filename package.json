@@ -9,7 +9,7 @@
     "packages/config/*"
   ],
   "scripts": {
-    "build": "tsc --build",
+    "build": "yarn workspace @grey-lit/types build && yarn workspace @grey-lit/utils build && tsc --build",
     "test": "yarn workspaces run test",
     "clean": "yarn workspaces run clean",
     "dev": "yarn workspaces run dev",
