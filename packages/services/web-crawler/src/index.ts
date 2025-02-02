@@ -3,7 +3,7 @@ import express from 'express';
 const app = express();
 const port = process.env.PORT || 3008;
 
-app.get('/health', (req, res) => {
+app.get('/health', (_req, res) => {
   res.json({ status: 'healthy' });
 });
 
