@@ -1,4 +1,4 @@
-import { isValidUrl, isEmptyString } from '../src';
+import { isValidUrl, isEmptyString } from '../src/index';
 
 describe('String Validation', () => {
   describe('isValidUrl', () => {
