@@ -6,7 +6,8 @@
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "composite": true,
-    "declaration": true
+    "declaration": true,
+    "rootDir": ".."
   },
   "include": [
     "./*/src/**/*"
