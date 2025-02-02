@@ -1,9 +1,12 @@
 /** @type {import('ts-jest').JestConfigWithTsJest} */
 module.exports = {
+  displayName: 'utils',
   preset: 'ts-jest',
   testEnvironment: 'node',
-  testMatch: ['**/__tests__/**/*.test.ts'],
+  testMatch: ['<rootDir>/__tests__/**/*.test.ts'],
   transform: {
     '^.+\\.ts$': 'ts-jest'
-  }
+  },
+  moduleFileExtensions: ['ts', 'js', 'json'],
+  roots: ['<rootDir>']
 };
