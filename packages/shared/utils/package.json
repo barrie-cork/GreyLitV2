@@ -6,7 +6,10 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc --declaration",
-    "clean": "rimraf dist"
+    "clean": "rimraf dist",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
   },
   "dependencies": {},
   "devDependencies": {
