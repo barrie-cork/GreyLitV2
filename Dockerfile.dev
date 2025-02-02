@@ -1,0 +1,26 @@
+FROM node:18.17.1-alpine
+
+WORKDIR /app
+
+# Install development dependencies
+RUN apk add --no-cache python3 make g++
+
+# Install global development tools
+RUN yarn global add typescript ts-node-dev
+
+# Copy package files
+COPY package.json yarn.lock ./
+COPY packages/shared/types/package.json ./packages/shared/types/
+COPY packages/shared/utils/package.json ./packages/shared/utils/
+COPY packages/services/*/package.json ./packages/services/
+
+# Install dependencies
+RUN yarn install
+
+# Copy source code
+COPY . .
+
+# Build shared packages
+RUN yarn build:shared
+
+CMD ["yarn", "dev"]

@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  auth:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/packages/shared/types/node_modules
+      - /app/packages/shared/utils/node_modules
+      - /app/packages/services/*/node_modules
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+    ports:
+      - "3000:3000"
+    command: yarn workspace @grey-lit/auth-service dev
+
+  dashboard:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/packages/shared/types/node_modules
+      - /app/packages/shared/utils/node_modules
+      - /app/packages/services/*/node_modules
+    environment:
+      - NODE_ENV=development
+      - PORT=3001
+    ports:
+      - "3001:3001"
+    command: yarn workspace @grey-lit/dashboard-service dev
+
+  search-config:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/packages/shared/types/node_modules
+      - /app/packages/shared/utils/node_modules
+      - /app/packages/services/*/node_modules
+    environment:
+      - NODE_ENV=development
+      - PORT=3002
+    ports:
+      - "3002:3002"
+    command: yarn workspace @grey-lit/search-config-service dev
