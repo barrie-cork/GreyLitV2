@@ -3,7 +3,7 @@
   "compilerOptions": {
     "outDir": "./dist",
     "rootDir": "./src",
-    "types": ["node"],
+    "types": ["node", "jest"],
     "typeRoots": ["../../node_modules/@types", "./node_modules/@types"],
     "noImplicitAny": true,
     "noImplicitThis": true,
@@ -16,6 +16,8 @@
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+    "noPropertyAccessFromIndexSignature": true,
     "baseUrl": "../..",
     "paths": {
       "@grey-lit/*": ["packages/shared/*/src"]

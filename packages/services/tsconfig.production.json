@@ -5,6 +5,9 @@
     "declarationMap": false,
     "removeComments": true,
     "noUnusedLocals": true,
-    "noUnusedParameters": true
+    "noUnusedParameters": true,
+    "importsNotUsedAsValues": "remove",
+    "noEmitHelpers": true,
+    "importHelpers": true
   }
 }
