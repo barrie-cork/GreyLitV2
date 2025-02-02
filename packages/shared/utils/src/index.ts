@@ -1,16 +1,11 @@
-/**
- * Email validation utility
- */
-export const isValidEmail = (email: string): boolean => {
+// String validation utilities
+export function isValidEmail(email: string): boolean {
   if (!email) return false;
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email);
-};
+}
 
-/**
- * URL validation utility
- */
-export const isValidUrl = (url: string): boolean => {
+export function isValidUrl(url: string): boolean {
   if (!url) return false;
   try {
     new URL(url);
@@ -18,11 +13,8 @@ export const isValidUrl = (url: string): boolean => {
   } catch {
     return false;
   }
-};
+}
 
-/**
- * Empty string validation utility
- */
-export const isEmptyString = (str: string): boolean => {
+export function isEmptyString(str: string): boolean {
   return !str || str.trim().length === 0;
-};
+}
