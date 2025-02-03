@@ -1,17 +1,7 @@
-import { jest, beforeAll, afterAll } from '@jest/globals';
+const { jest } = require('@jest/globals');
 
 // Global test timeout
 jest.setTimeout(10000);
-
-// Global beforeAll
-beforeAll(() => {
-  // Add any global test setup here
-});
-
-// Global afterAll
-afterAll(() => {
-  // Add any global test cleanup here
-});
 
 // Mock console.error to avoid noise in tests
 console.error = jest.fn();
