@@ -1,4 +1,4 @@
-require('@testing-library/jest-dom');
+import '@jest/globals';
 
 // Global test timeout
 jest.setTimeout(10000);
