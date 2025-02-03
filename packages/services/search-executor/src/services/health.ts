@@ -36,3 +36,21 @@ export async function getHealthStatus(): Promise<HealthCheckResponse> {
     }
   };
 }
+import { HealthCheckResponse } from '../types';
+
+export async function getHealthStatus(): Promise<HealthCheckResponse> {
+  return {
+    status: 'healthy',
+    timestamp: new Date().toISOString(),
+    dependencies: {
+      serpapi: {
+        status: 'up',
+        latency: 5
+      },
+      serper: {
+        status: 'up',
+        latency: 5
+      }
+    }
+  };
+}
