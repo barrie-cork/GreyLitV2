@@ -33,20 +33,3 @@
     { "path": "./packages/services" }
   ]
 }
-{
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@grey-lit/*": ["packages/shared/*/src"]
-    },
-    "target": "es2020",
-    "module": "commonjs",
-    "lib": ["es2020"],
-    "declaration": true,
-    "sourceMap": true,
-    "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
-  }
-}
