@@ -16,10 +16,10 @@ The Search Execution Service manages the execution of search strategies across m
 
 ### 2. Rate Limiting
 
-- Redis-Cell module integration
-- Per-API rate configurations
-- Request throttling controls
-- Response header standards
+- Redis-Cell module integration for SERP APIs
+- ScrapingAnt quota management
+- Request throttling based on ScrapingAnt limits
+- Response header handling for rate limits
 
 ### 3. Result Management
 

@@ -52,9 +52,9 @@ The Grey Literature Search Engine uses a microservice architecture to provide sc
    - Search metrics
 
 9. Web Crawler Service
-   - Content extraction
-   - Rate limiting
-   - URL management
+   - ScrapingAnt integration
+   - Quota management
+   - Response processing
 
 ## Data Storage
 - MongoDB: Document storage

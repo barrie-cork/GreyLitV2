@@ -232,6 +232,9 @@ Response:
 
 ## Rate Limiting
 
-- Default: ScrapingAnt API tier limits (5000 requests/month)
-- Bulk operations: Use ScrapingAnt bulk endpoints
-- Report generation: 10 requests per minute
+- ScrapingAnt API Limits:
+  - Standard tier: 5000 requests/month
+  - Bulk operations: Up to 100 URLs per request
+  - Concurrent requests: Based on plan limits
+  - Retry-After: Honors ScrapingAnt headers
+- Report generation: Limited by available ScrapingAnt quota

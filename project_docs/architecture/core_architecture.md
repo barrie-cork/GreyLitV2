@@ -60,11 +60,11 @@
        - exportHTML()
        - generateSearchMetrics()
      - IWebCrawler:
-       - crawlURL(url)
-       - handleAntiBot()
-       - respectRobotsTxt()
-       - extractContent()
-       - validateContent()
+       - crawlWithScrapingAnt(url)
+       - handleScrapingAntResponse()
+       - validateScrapedContent()
+       - extractContentFromResponse()
+       - manageScrapingAntQuota()
    - Business Rules:
      - PRISMA compliance
      - Rate limiting (SERP APIs, crawling)
