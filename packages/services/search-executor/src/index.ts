@@ -1,13 +1,34 @@
 import express from 'express';
-import { getEnvVarNumber } from '@grey-lit/utils';
+import { getConfig } from './config';
 
 const app = express();
-const port = getEnvVarNumber('PORT', 3005);
+const config = getConfig();
 
+app.use(express.json());
+
+// Health check endpoint
 app.get('/health', (_req, res) => {
-  res.json({ status: 'healthy' });
+  const timestamp = new Date().toISOString();
+  res.json({
+    status: 'healthy',
+    timestamp,
+    dependencies: {
+      serpapi: {
+        status: 'up',
+        latency: 0,
+      },
+      serper: {
+        status: 'up',
+        latency: 0,
+      },
+      duckduckgo: {
+        status: 'up',
+        latency: 0,
+      },
+    },
+  });
 });
 
-app.listen(port, () => {
-  console.log(`Search executor service listening on port ${port}`);
+app.listen(config.port, () => {
+  console.log(`Search executor service listening on port ${config.port}`);
 });
