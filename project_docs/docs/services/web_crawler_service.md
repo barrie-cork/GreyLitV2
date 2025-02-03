@@ -16,11 +16,11 @@ The Web Crawler Service is responsible for systematically crawling and extractin
 
 ### 2. Content Extraction
 
-- HTML content retrieval
-- JavaScript rendering using Puppeteer/Playwright
+- HTML content retrieval via ScrapingAnt
 - PDF and document download handling
 - Resource management
 - Content validation and sanitization
+- Automated JavaScript rendering via ScrapingAnt
 
 ### 3. Rate Limiting Management
 
@@ -239,14 +239,13 @@ Services:
   - Search Strategy Service
 
 Libraries:
-  - Puppeteer/Playwright for JS rendering
   - LangChain's ScrapingAntLoader
   - pdf.js for PDF processing
   - cheerio for HTML parsing
 
 Databases:
   - MongoDB: Crawl state & results
-  - Redis with Redis-Cell module: Rate limiting
+  - Redis: Cache and session management
 ```
 
 ## Configuration

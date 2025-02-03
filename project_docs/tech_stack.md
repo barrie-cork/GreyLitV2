@@ -52,7 +52,7 @@
 | ------------------- | ------- | ---------------------------- |
 | LangChain Community | 0.2.1   | Document processing pipeline |
 | LangChain Neo4j     | 0.1.7   | Knowledge graph operations   |
-| ScrapingAnt         | 1.3.0   | Web content extraction       |
+| ScrapingAnt         | 1.3.0   | Web content extraction & JS rendering |
 
 ## Security
 
