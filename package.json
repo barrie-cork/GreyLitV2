@@ -9,9 +9,9 @@
     "packages/config/*"
   ],
   "scripts": {
-    "build:shared": "tsc --build packages/shared/types && tsc --build packages/shared/utils",
-    "build": "yarn clean && yarn build:shared && tsc --build packages/services/tsconfig.production.json",
-    "build:dev": "yarn clean && yarn build:shared && tsc --build packages/services/tsconfig.development.json",
+    "build:shared": "tsc --build ./packages/shared/types/tsconfig.json && tsc --build ./packages/shared/utils/tsconfig.json",
+    "build": "yarn clean && yarn build:shared && tsc --build ./packages/services/tsconfig.production.json",
+    "build:dev": "yarn clean && yarn build:shared && tsc --build ./packages/services/tsconfig.development.json",
     "test": "jest",
     "clean": "yarn workspaces run clean",
     "dev": "yarn workspaces run dev",
