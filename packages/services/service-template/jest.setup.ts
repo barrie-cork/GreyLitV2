@@ -1,7 +1,5 @@
-const { jest } = require('@jest/globals');
-
 // Global test timeout
-jest.setTimeout(10000);
+global.jest.setTimeout(10000);
 
 // Mock console.error to avoid noise in tests
-console.error = jest.fn();
+global.console.error = global.jest.fn();
