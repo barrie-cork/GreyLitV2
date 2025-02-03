@@ -14,15 +14,7 @@ export class SearchService {
   }
 
   getActiveSearches(): ExecutionStatus[] {
-    // Filter out completed searches older than 1 hour
-    const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000);
-    return Array.from(this.activeSearches.values()).filter(search => {
-      if (search.status === 'completed' || search.status === 'failed') {
-        const searchTime = new Date(search.timestamp || Date.now());
-        return searchTime > oneHourAgo;
-      }
-      return true;
-    });
+    return Array.from(this.activeSearches.values());
   }
 
   getSearchStatus(executionId: string): ExecutionStatus | null {
