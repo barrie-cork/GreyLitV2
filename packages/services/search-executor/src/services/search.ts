@@ -14,11 +14,23 @@ export class SearchService {
   }
 
   getActiveSearches(): ExecutionStatus[] {
-    return Array.from(this.activeSearches.values());
+    const searches = Array.from(this.activeSearches.values());
+    // Sort by timestamp descending
+    return searches.sort((a, b) => {
+      const timeA = a.timestamp ? new Date(a.timestamp).getTime() : 0;
+      const timeB = b.timestamp ? new Date(b.timestamp).getTime() : 0;
+      return timeB - timeA;
+    });
   }
 
   getSearchStatus(executionId: string): ExecutionStatus | null {
-    return this.activeSearches.get(executionId) || null;
+    const status = this.activeSearches.get(executionId);
+    if (!status) {
+      // Try to find in active searches by ID
+      const searches = this.getActiveSearches();
+      return searches.find(s => s.executionId === executionId) || null;
+    }
+    return status;
   }
 
   executeSearch(query: SearchQuery): ExecutionStatus {

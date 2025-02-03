@@ -41,18 +41,9 @@ router.get('/search/:executionId', (req, res) => {
       return;
     }
 
-    // First try to get the status directly
     const status = searchService.getSearchStatus(executionId);
     if (status) {
       res.json(status);
-      return;
-    }
-
-    // If not found directly, check active searches
-    const activeSearches = searchService.getActiveSearches();
-    const activeSearch = activeSearches.find(s => s.executionId === executionId);
-    if (activeSearch) {
-      res.json(activeSearch);
       return;
     }
 
