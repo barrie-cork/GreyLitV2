@@ -12,7 +12,12 @@ const config = {
   },
   testMatch: [
     '<rootDir>/src/**/__tests__/**/*.test.ts'
-  ]
+  ],
+  globals: {
+    'ts-jest': {
+      tsconfig: '<rootDir>/tsconfig.json'
+    }
+  }
 };
 
 module.exports = config;
