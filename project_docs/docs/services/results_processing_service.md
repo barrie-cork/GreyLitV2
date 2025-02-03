@@ -4,6 +4,36 @@
 
 The Results Processing Service manages the processing, analysis, and classification of search results from SERP APIs. It handles result ranking, classification, user feedback, and prepares data for PRISMA-compliant reporting.
 
+## Service Architecture
+
+### Components
+1. Result Reception Handler
+   - Validates incoming results
+   - Manages result queues
+   - Initializes processing jobs
+
+2. Processing Pipeline Manager
+   - Coordinates processing stages
+   - Manages parallel processing
+   - Handles processing failures
+
+3. Classification Engine
+   - Manages result classifications
+   - Handles user feedback
+   - Updates classification status
+
+4. Analysis Engine
+   - Performs content analysis
+   - Generates metrics
+   - Prepares reporting data
+
+### Integration Points
+- Search Execution Service
+- Document Processing Service
+- Reporting Service
+- Knowledge Graph (Neo4j)
+- Vector Database
+
 ## Core Functionalities
 
 ### 1. Results Processing
