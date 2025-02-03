@@ -1,5 +1,6 @@
 /** @type {import('jest').Config} */
-const config = {
+module.exports = {
+  displayName: 'service-template',
   preset: 'ts-jest',
   testEnvironment: 'node',
   transform: {
@@ -16,7 +17,9 @@ const config = {
   },
   testMatch: [
     '<rootDir>/src/**/__tests__/**/*.test.ts',
-    '<rootDir>/__tests__/**/*.test.ts'
+    '<rootDir>/__tests__/unit/**/*.test.ts',
+    '<rootDir>/__tests__/integration/**/*.test.ts',
+    '<rootDir>/__tests__/e2e/**/*.test.ts'
   ],
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   moduleFileExtensions: ['ts', 'js', 'json'],
@@ -35,7 +38,8 @@ const config = {
   collectCoverageFrom: [
     'src/**/*.ts',
     '!src/**/*.d.ts',
-    '!src/**/__tests__/**'
+    '!src/**/__tests__/**',
+    '!src/types/**'
   ],
   coverageThreshold: {
     global: {
@@ -46,5 +50,3 @@ const config = {
     }
   }
 };
-
-module.exports = config;
