@@ -1,0 +1,91 @@
+# System Workflow
+
+## Search Process Flow
+
+```mermaid
+graph TD
+    %% User Interactions
+    User([User]) --> Auth[Authentication Service]
+    Auth --> Dashboard[User Dashboard]
+    
+    %% Search Configuration
+    Dashboard --> |Create Search|Config[Search Configuration Service]
+    Config --> |Upload Guidelines|DocProc[Document Processing Service]
+    
+    %% Document Processing Flow
+    DocProc --> |Process Text|Vec[(Vector Database)]
+    DocProc --> |Extract Entities|Neo4j[(Knowledge Graph)]
+    
+    %% Strategy Generation
+    Config --> |PIC Framework|Strategy[Search Strategy Service]
+    Strategy --> |Query|Neo4j
+    Strategy --> |LLM Integration|OpenRouter[OpenRouter API]
+    OpenRouter --> |Suggestions|Strategy
+    
+    %% Search Execution & Web Crawling
+    Strategy --> |Search Strings|Execution[Search Execution Service]
+    Execution --> |Rate Limited Requests|Redis[(Redis-Cell)]
+    Redis --> |Allow/Deny|Execution
+    Execution --> |Query|SERP[SERP APIs]
+    SERP --> |URLs|Crawler[Web Crawler Service]
+    Crawler --> |Rate Limited Requests|Redis
+    Crawler --> |Extract Content|DocProc
+    
+    %% Results Processing
+    SERP --> |Direct Results|Results[Results Processing Service]
+    Crawler --> |Crawled Results|Results
+    Results --> |Store|Mongo[(MongoDB)]
+    Results --> |Update|Dashboard
+    
+    %% Reporting
+    Results --> |Generate Report|Report[Reporting Service]
+    Report --> |PRISMA Report|Dashboard
+
+    %% Styling
+    classDef service fill:#f9f,stroke:#333,stroke-width:2px
+    classDef database fill:#bbb,stroke:#333,stroke-width:2px
+    classDef external fill:#bbf,stroke:#333,stroke-width:2px
+    
+    class Auth,Dashboard,Config,DocProc,Strategy,Execution,Crawler,Results,Report service
+    class Vec,Neo4j,Redis,Mongo database
+    class OpenRouter,SERP external
+```
+
+## Rate Limiting Flow
+
+```mermaid
+sequenceDiagram
+    participant ES as Execution Service
+    participant RC as Redis-Cell
+    participant SERP as SERP APIs
+
+    ES->>RC: Check rate limit
+    alt Limit not exceeded
+        RC->>ES: Allow request
+        ES->>SERP: Execute search
+        SERP->>ES: Return results
+    else Limit exceeded
+        RC->>ES: Deny request (retry after)
+        ES->>ES: Queue for retry
+    end
+```
+
+## Document Processing Flow
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant DP as Document Processing
+    participant Vec as Vector Database
+    participant KG as Knowledge Graph
+
+    User->>DP: Upload guideline
+    DP->>DP: Preprocess text
+    par Process vectors
+        DP->>Vec: Generate & store embeddings
+    and Process entities
+        DP->>DP: Extract entities
+        DP->>KG: Create nodes & relationships
+    end
+    DP->>User: Processing complete
+```

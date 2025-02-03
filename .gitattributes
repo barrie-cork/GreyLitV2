@@ -1,0 +1,12 @@
+# Automatically normalize line endings
+* text=auto
+
+# Force specific file types to always use LF line endings
+*.js text eol=lf
+*.ts text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+
+# Dockerfile and shell scripts should use LF line endings
+Dockerfile text eol=lf
+*.sh text eol=lf
