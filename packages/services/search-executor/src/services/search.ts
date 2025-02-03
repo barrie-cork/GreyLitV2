@@ -1,10 +1,11 @@
+import { randomUUID } from 'crypto';
 import { SearchQuery, SearchResult, ExecutionStatus } from '../types';
 
 export class SearchService {
   private executionId: string;
 
   constructor() {
-    this.executionId = crypto.randomUUID();
+    this.executionId = randomUUID();
   }
 
   async executeSearch(query: SearchQuery): Promise<ExecutionStatus> {
