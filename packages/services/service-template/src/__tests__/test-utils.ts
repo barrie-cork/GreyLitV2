@@ -3,9 +3,6 @@ import { Express, Request, Response } from 'express';
 import { Server } from 'http';
 
 export const testUtils = {
-  /**
-   * Mock factories
-   */
   mocks: {
     createServiceError: (
       message: string,
@@ -37,12 +34,22 @@ export const testUtils = {
       ...overrides,
     }),
 
-    createNext: () => jest.fn()
+    createNext: () => jest.fn(),
+
+    createMockServiceError: (
+      message: string,
+      code: string,
+      statusCode: number,
+      details?: unknown
+    ): ServiceError => ({
+      name: 'ServiceError',
+      message,
+      code,
+      statusCode,
+      details,
+    })
   },
 
-  /**
-   * Test helpers
-   */
   helpers: {
     createTestServer: (app: Express): Server => app.listen(0),
 
@@ -55,12 +62,17 @@ export const testUtils = {
       }),
 
     wait: (ms: number): Promise<void> => 
-      new Promise(resolve => setTimeout(resolve, ms))
+      new Promise(resolve => setTimeout(resolve, ms)),
+      
+    setupTestDatabase: async () => {
+      // Add database setup logic
+    },
+
+    cleanupTestDatabase: async () => {
+      // Add database cleanup logic
+    }
   },
 
-  /**
-   * Common assertions
-   */
   assertions: {
     assertValidHealthCheck: (response: HealthCheckResponse) => {
       expect(response).toHaveProperty('status');
@@ -74,6 +86,11 @@ export const testUtils = {
       expect(response).toHaveProperty('error');
       expect(response.error).toHaveProperty('code');
       expect(response.error).toHaveProperty('message');
+    },
+
+    assertValidResponse: (response: any, expectedStatus: number) => {
+      expect(response.status).toBe(expectedStatus);
+      expect(response.body).toBeDefined();
     }
   }
 };

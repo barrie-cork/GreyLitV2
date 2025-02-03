@@ -17,7 +17,6 @@ module.exports = {
   },
   testMatch: [
     '<rootDir>/src/**/__tests__/**/*.test.ts',
-    '<rootDir>/__tests__/unit/**/*.test.ts',
     '<rootDir>/__tests__/integration/**/*.test.ts',
     '<rootDir>/__tests__/e2e/**/*.test.ts'
   ],

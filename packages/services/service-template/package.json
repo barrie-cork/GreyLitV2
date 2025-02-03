@@ -9,12 +9,12 @@
     "clean": "rimraf dist",
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
     "lint": "eslint . --ext .ts",
-    "test": "jest --setupFiles ./jest.setup.ts",
-    "test:unit": "jest \"src/.*\\.test\\.ts$\" --setupFiles ./jest.setup.ts",
-    "test:integration": "jest \"__tests__/integration/.*\\.test\\.ts$\" --setupFiles ./jest.setup.ts",
-    "test:e2e": "jest \"__tests__/e2e/.*\\.test\\.ts$\" --setupFiles ./jest.setup.ts",
-    "test:watch": "jest --watch --setupFiles ./jest.setup.ts",
-    "test:coverage": "jest --coverage --setupFiles ./jest.setup.ts",
+    "test": "jest",
+    "test:unit": "jest \"src/.*\\.test\\.ts$\"",
+    "test:integration": "jest \"__tests__/integration/.*\\.test\\.ts$\"",
+    "test:e2e": "jest \"__tests__/e2e/.*\\.test\\.ts$\"",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
