@@ -5,6 +5,9 @@
     "rootDir": "./src",
     "types": ["node", "jest"],
     "typeRoots": ["../../node_modules/@types", "./node_modules/@types"],
+    
+    /* Type Checking */
+    "strict": true,
     "noImplicitAny": true,
     "noImplicitThis": true,
     "alwaysStrict": true,
@@ -18,10 +21,23 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedIndexedAccess": true,
     "noPropertyAccessFromIndexSignature": true,
+    
+    /* Module Resolution */
     "baseUrl": "../..",
     "paths": {
       "@grey-lit/*": ["packages/shared/*/src"]
-    }
+    },
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    
+    /* Emit */
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "removeComments": false,
+    "preserveConstEnums": true
   },
   "include": ["src/**/*"],
   "references": [
