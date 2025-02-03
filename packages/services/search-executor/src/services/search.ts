@@ -14,7 +14,19 @@ export class SearchService {
   }
 
   getActiveSearches(): ExecutionStatus[] {
-    return Array.from(this.activeSearches.values());
+    // Filter out completed searches older than 1 hour
+    const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000);
+    return Array.from(this.activeSearches.values()).filter(search => {
+      if (search.status === 'completed' || search.status === 'failed') {
+        const searchTime = new Date(search.timestamp || Date.now());
+        return searchTime > oneHourAgo;
+      }
+      return true;
+    });
+  }
+
+  getSearchStatus(executionId: string): ExecutionStatus | null {
+    return this.activeSearches.get(executionId) || null;
   }
 
   executeSearch(query: SearchQuery): ExecutionStatus {

@@ -28,6 +28,26 @@ router.post('/search', (req, res) => {
   }
 });
 
+// GET status for specific execution
+router.get('/search/:executionId', (req, res) => {
+  try {
+    const { executionId } = req.params;
+    if (!executionId) {
+      res.status(400).json({ error: 'Execution ID is required' });
+      return;
+    }
+
+    const status = searchService.getSearchStatus(executionId);
+    if (!status) {
+      res.status(404).json({ error: 'Search execution not found' });
+      return;
+    }
+    res.json(status);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to get search status' });
+  }
+});
+
 // GET results for specific execution
 router.get('/search/:executionId/results', (req, res) => {
   try {
