@@ -1,37 +1,18 @@
-import { getHealthStatus } from '../../src/services/health';
-
-describe('Health Service', () => {
-  it('should return healthy status', () => {
-    const health = getHealthStatus();
-    expect(health.status).toBe('healthy');
-  });
-
-  it('should include current timestamp', () => {
-    const health = getHealthStatus();
-    expect(Date.parse(health.timestamp)).not.toBeNaN();
-  });
-
-  it('should include dependencies object', () => {
-    const health = getHealthStatus();
-    expect(health.dependencies).toBeDefined();
-    expect(health.dependencies).toBeInstanceOf(Object);
-  });
-});
 import { getHealthStatus } from '../health';
 
 describe('Health Service', () => {
-  it('should return healthy status', () => {
-    const health = getHealthStatus();
+  it('should return healthy status', async () => {
+    const health = await getHealthStatus();
     expect(health.status).toBe('healthy');
   });
 
-  it('should include current timestamp', () => {
-    const health = getHealthStatus();
+  it('should include current timestamp', async () => {
+    const health = await getHealthStatus();
     expect(Date.parse(health.timestamp)).not.toBeNaN();
   });
 
-  it('should include dependencies object', () => {
-    const health = getHealthStatus();
+  it('should include dependencies object', async () => {
+    const health = await getHealthStatus();
     expect(health.dependencies).toBeDefined();
     expect(health.dependencies).toBeInstanceOf(Object);
   });
