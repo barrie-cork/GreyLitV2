@@ -1,5 +1,5 @@
 {
-  "name": "@grey-lit/service-template",
+  "name": "@grey-lit/search-executor",
   "version": "0.1.0",
   "private": true,
   "main": "dist/index.js",
