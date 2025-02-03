@@ -4,5 +4,10 @@
     "outDir": "./dist",
     "rootDir": "./src"
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*"],
+  "exclude": ["**/__tests__/**/*", "dist"],
+  "references": [
+    { "path": "../../shared/types" },
+    { "path": "../../shared/utils" }
+  ]
 }

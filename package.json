@@ -18,7 +18,8 @@
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
     "format": "prettier --write \"**/*.{ts,json,md}\"",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "verify-tsconfig": "ts-node scripts/verify-tsconfig.ts"
   },
   "engines": {
     "node": "18.17.1",
