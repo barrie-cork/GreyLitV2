@@ -1,16 +1,18 @@
-/** @type {import('ts-jest').JestConfigWithTsJest} */
-module.exports = {
+/** @type {import('jest').Config} */
+const config = {
   preset: 'ts-jest',
   testEnvironment: 'node',
-  testMatch: ['<rootDir>/packages/**/__tests__/**/*.test.ts'],
-  moduleNameMapper: {
-    '^@grey-lit/(.*)$': '<rootDir>/packages/$1/src'
+  transform: {
+    '^.+\\.tsx?$': ['ts-jest', {
+      tsconfig: '<rootDir>/tsconfig.json'
+    }]
   },
-  collectCoverageFrom: [
-    'packages/**/src/**/*.ts',
-    '!packages/**/src/index.ts'
-  ],
-  coverageDirectory: 'coverage',
-  coverageReporters: ['text', 'lcov'],
-  verbose: true
+  moduleNameMapper: {
+    '^@grey-lit/(.*)$': '<rootDir>/../../shared/$1/src'
+  },
+  testMatch: [
+    '<rootDir>/src/**/__tests__/**/*.test.ts'
+  ]
 };
+
+module.exports = config;
