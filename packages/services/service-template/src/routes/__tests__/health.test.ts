@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { createMockRequest, createMockResponse, createMockNext } from '../../__tests__/test-utils';
-import healthRoutes from '../health';
+import healthRoutes from '../../routes/health';
 
 describe('Health Routes', () => {
   let mockReq: Partial<Request>;
