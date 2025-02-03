@@ -36,6 +36,7 @@ export interface ExecutionStatus {
   executionId: string;
   status: 'initiated' | 'running' | 'completed' | 'failed';
   timestamp?: string;
+  query?: SearchQuery;
   apiStatus: {
     serpapi?: APIStatus;
     serper?: APIStatus;

@@ -38,6 +38,7 @@ export class SearchService {
       executionId,
       status: 'initiated',
       timestamp,
+      query,
       apiStatus: {
         serpapi: {
           enabled: this.config.apis.serpapi.enabled,
