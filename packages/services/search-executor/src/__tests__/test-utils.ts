@@ -50,3 +50,64 @@ export const testUtils = {
     }
   }
 };
+import { SearchQuery, SearchResult, ExecutionStatus } from '../types';
+import { Express, Request, Response } from 'express';
+import { Server } from 'http';
+
+export const testUtils = {
+  mocks: {
+    createSearchQuery: (): SearchQuery => ({
+      string: 'test search',
+      targetUrl: 'https://example.com'
+    }),
+
+    createResponse: () => {
+      const res: Partial<Response> = {};
+      res.status = jest.fn().mockReturnValue(res);
+      res.json = jest.fn().mockReturnValue(res);
+      res.send = jest.fn().mockReturnValue(res);
+      return res as Response;
+    },
+
+    createRequest: (overrides: Record<string, any> = {}): Partial<Request> => ({
+      body: {},
+      query: {},
+      params: {},
+      headers: {},
+      ...overrides,
+    }),
+
+    createNext: () => jest.fn()
+  },
+
+  helpers: {
+    createTestServer: (app: Express): Server => app.listen(0),
+
+    closeTestServer: (server: Server): Promise<void> => 
+      new Promise((resolve, reject) => {
+        server.close((err) => {
+          if (err) reject(err);
+          else resolve();
+        });
+      }),
+
+    wait: (ms: number): Promise<void> => 
+      new Promise(resolve => setTimeout(resolve, ms))
+  },
+
+  assertions: {
+    assertValidSearchResult: (result: SearchResult) => {
+      expect(result).toHaveProperty('title');
+      expect(result).toHaveProperty('url');
+      expect(result).toHaveProperty('snippet');
+      expect(result).toHaveProperty('source');
+      expect(result).toHaveProperty('timestamp');
+    },
+
+    assertValidExecutionStatus: (status: ExecutionStatus) => {
+      expect(status).toHaveProperty('executionId');
+      expect(status).toHaveProperty('status');
+      expect(status).toHaveProperty('apiStatus');
+    }
+  }
+};
