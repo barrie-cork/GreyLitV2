@@ -85,7 +85,9 @@ export class SearchService {
 
       // Update status to completed
       status.status = 'completed';
-      status.apiStatus.serpapi.currentResults = 1;
+      if (status.apiStatus.serpapi) {
+        status.apiStatus.serpapi.currentResults = 1;
+      }
       this.activeSearches.set(executionId, status);
     } catch (error) {
       status.status = 'failed';

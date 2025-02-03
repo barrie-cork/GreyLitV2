@@ -31,12 +31,18 @@ router.post('/search', (req, res) => {
 // GET results for specific execution
 router.get('/search/:executionId/results', (req, res) => {
   try {
-    const results = searchService.getResults(req.params.executionId);
+    const { executionId } = req.params;
+    if (!executionId) {
+      res.status(400).json({ error: 'Execution ID is required' });
+      return;
+    }
+
+    const results = searchService.getResults(executionId);
     if (!results) {
       res.status(404).json({ error: 'Search execution not found' });
       return;
     }
-    res.json(results);
+    res.json({ results });
   } catch (error) {
     res.status(500).json({ error: 'Failed to get search results' });
   }
