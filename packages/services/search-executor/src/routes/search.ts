@@ -17,7 +17,7 @@ router.get('/search', (_req, res) => {
 // POST endpoint initiates new search
 router.post('/search', (req, res) => {
   try {
-    if (!req.body.string) {
+    if (!req.body || !req.body.string) {
       res.status(400).json({ error: 'Search string is required' });
       return;
     }
