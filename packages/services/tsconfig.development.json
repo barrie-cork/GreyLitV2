@@ -7,21 +7,22 @@
     "declarationMap": true,
     "inlineSources": true,
     "preserveWatchOutput": true,
-    "rootDir": "..",
+    "rootDir": "../..",
     
     /* Relaxed Checks for Development */
     "noUnusedLocals": false,
     "noUnusedParameters": false
   },
   "include": [
-    "./*/src/**/*"
+    "./*/src/**/*",
+    "../../packages/shared/**/*"
   ],
   "exclude": [
     "**/node_modules",
     "**/dist"
   ],
   "references": [
-    { "path": "../shared/types" },
-    { "path": "../shared/utils" }
+    { "path": "../../shared/types" },
+    { "path": "../../shared/utils" }
   ]
 }

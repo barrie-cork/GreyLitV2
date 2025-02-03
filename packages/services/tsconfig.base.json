@@ -3,7 +3,7 @@
   "compilerOptions": {
     /* Output Configuration */
     "outDir": "./dist",
-    "rootDir": "./src",
+    "rootDir": ".",
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
@@ -38,7 +38,7 @@
     "types": ["node", "jest"],
     "typeRoots": ["../../node_modules/@types", "./node_modules/@types"]
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "../../packages/shared/**/*"],
   "references": [
     { "path": "../../shared/types" },
     { "path": "../../shared/utils" }
