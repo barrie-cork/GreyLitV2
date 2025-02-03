@@ -1,5 +1,3 @@
-import '@jest/globals';
-
 // Global test timeout
 jest.setTimeout(10000);
 

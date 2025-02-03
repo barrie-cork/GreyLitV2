@@ -4,7 +4,8 @@ const config = {
   testEnvironment: 'node',
   transform: {
     '^.+\\.tsx?$': ['ts-jest', {
-      tsconfig: '<rootDir>/tsconfig.json'
+      tsconfig: '<rootDir>/tsconfig.json',
+      useESM: false
     }]
   },
   moduleNameMapper: {
@@ -15,7 +16,13 @@ const config = {
   ],
   globals: {
     'ts-jest': {
-      tsconfig: '<rootDir>/tsconfig.json'
+      tsconfig: '<rootDir>/tsconfig.json',
+      useESM: false
+    }
+  },
+  testEnvironmentOptions: {
+    node: {
+      esModules: false
     }
   }
 };
