@@ -1,13 +1,17 @@
 import express from 'express';
-import { getEnvVarNumber } from '@grey-lit/utils';
+import { getConfig } from './config';
+import healthRoutes from './routes/health';
 
 const app = express();
-const port = getEnvVarNumber('PORT', 3005);
+const config = getConfig();
 
-app.get('/health', (_req, res) => {
-  res.json({ status: 'healthy' });
-});
+// Middleware
+app.use(express.json());
 
-app.listen(port, () => {
-  console.log(`Search executor service listening on port ${port}`);
+// Routes
+app.use('/', healthRoutes);
+
+// Start server
+app.listen(config.port, () => {
+  console.log(`Service template listening on port ${config.port}`);
 });
