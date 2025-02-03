@@ -1,11 +1,16 @@
 import { randomUUID } from 'crypto';
 import { SearchQuery, SearchResult, ExecutionStatus } from '../types';
+import { getConfig } from '../config';
 
 export class SearchService {
   private activeSearches: Map<string, ExecutionStatus>;
+  private searchResults: Map<string, SearchResult[]>;
+  private config: ReturnType<typeof getConfig>;
 
   constructor() {
     this.activeSearches = new Map();
+    this.searchResults = new Map();
+    this.config = getConfig();
   }
 
   getActiveSearches(): ExecutionStatus[] {
@@ -15,27 +20,27 @@ export class SearchService {
   executeSearch(query: SearchQuery): ExecutionStatus {
     const executionId = randomUUID();
     
-    // Initial status
+    // Initial status using config
     const status: ExecutionStatus = {
       executionId,
       status: 'initiated',
       apiStatus: {
         serpapi: {
-          enabled: true,
+          enabled: this.config.apis.serpapi.enabled,
           status: 'ready',
-          maxResults: 100,
+          maxResults: this.config.apis.serpapi.maxResultsPerQuery,
           currentResults: 0
         },
         serper: {
-          enabled: true,
+          enabled: this.config.apis.serper.enabled,
           status: 'ready',
-          maxResults: 100,
+          maxResults: this.config.apis.serper.maxResultsPerQuery,
           currentResults: 0
         },
         duckduckgo: {
-          enabled: true,
+          enabled: this.config.apis.duckduckgo.enabled,
           status: 'ready',
-          maxResults: 100,
+          maxResults: this.config.apis.duckduckgo.maxResultsPerQuery,
           currentResults: 0
         }
       }
@@ -43,17 +48,49 @@ export class SearchService {
 
     // Store the search status
     this.activeSearches.set(executionId, status);
+    this.searchResults.set(executionId, []);
+
+    // Start processing the search asynchronously
+    this.processSearch(executionId, query).catch(console.error);
 
     return status;
   }
 
   getResults(executionId: string): SearchResult[] | null {
-    const status = this.activeSearches.get(executionId);
-    if (!status) {
-      return null;
-    }
+    return this.searchResults.get(executionId) || null;
+  }
 
-    // Placeholder for actual search results
-    return [];
+  private async processSearch(executionId: string, query: SearchQuery): Promise<void> {
+    const status = this.activeSearches.get(executionId);
+    if (!status) return;
+
+    try {
+      // Update status to running
+      status.status = 'running';
+      this.activeSearches.set(executionId, status);
+
+      // Simulate search delay
+      await new Promise(resolve => setTimeout(resolve, 2000));
+
+      // Add a sample result
+      const results = this.searchResults.get(executionId) || [];
+      results.push({
+        title: `Result for "${query.string}"`,
+        url: query.targetUrl || 'https://example.com',
+        snippet: `Sample result for search: ${query.string}`,
+        source: 'serpapi',
+        timestamp: new Date().toISOString()
+      });
+      this.searchResults.set(executionId, results);
+
+      // Update status to completed
+      status.status = 'completed';
+      status.apiStatus.serpapi.currentResults = 1;
+      this.activeSearches.set(executionId, status);
+    } catch (error) {
+      status.status = 'failed';
+      this.activeSearches.set(executionId, status);
+      throw error;
+    }
   }
 }
