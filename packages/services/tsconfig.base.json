@@ -1,7 +1,6 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    /* Output Configuration */
     "outDir": "./dist",
     "rootDir": ".",
     "declaration": true,
@@ -9,8 +8,6 @@
     "sourceMap": true,
     "removeComments": false,
     "preserveConstEnums": true,
-    
-    /* Type Checking */
     "strict": true,
     "noImplicitAny": true,
     "noImplicitThis": true,
@@ -23,24 +20,15 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedIndexedAccess": true,
     "noPropertyAccessFromIndexSignature": true,
-    
-    /* Module Resolution */
     "baseUrl": "../..",
     "paths": {
       "@grey-lit/*": ["packages/shared/*/src"]
     },
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "esModuleInterop": true,
-    
-    /* Types */
     "types": ["node", "jest"],
     "typeRoots": ["../../node_modules/@types", "./node_modules/@types"]
   },
-  "include": ["src/**/*", "../../packages/shared/**/*"],
   "references": [
-    { "path": "../../shared/types" },
-    { "path": "../../shared/utils" }
+    { "path": "../../packages/shared/types" },
+    { "path": "../../packages/shared/utils" }
   ]
 }
