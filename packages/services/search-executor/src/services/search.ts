@@ -2,16 +2,22 @@ import { randomUUID } from 'crypto';
 import { SearchQuery, SearchResult, ExecutionStatus } from '../types';
 
 export class SearchService {
-  private executionId: string;
+  private activeSearches: Map<string, ExecutionStatus>;
 
   constructor() {
-    this.executionId = randomUUID();
+    this.activeSearches = new Map();
+  }
+
+  async getActiveSearches(): Promise<ExecutionStatus[]> {
+    return Array.from(this.activeSearches.values());
   }
 
   async executeSearch(query: SearchQuery): Promise<ExecutionStatus> {
+    const executionId = randomUUID();
+    
     // Initial status
     const status: ExecutionStatus = {
-      executionId: this.executionId,
+      executionId,
       status: 'initiated',
       apiStatus: {
         serpapi: {
@@ -35,10 +41,18 @@ export class SearchService {
       }
     };
 
+    // Store the search status
+    this.activeSearches.set(executionId, status);
+
     return status;
   }
 
-  async getResults(): Promise<SearchResult[]> {
+  async getResults(executionId: string): Promise<SearchResult[] | null> {
+    const status = this.activeSearches.get(executionId);
+    if (!status) {
+      return null;
+    }
+
     // Placeholder for actual search results
     return [];
   }
