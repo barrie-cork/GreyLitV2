@@ -21,3 +21,18 @@ export function getHealthStatus(): HealthCheckResponse {
     },
   };
 }
+import { HealthCheckResponse } from '../types';
+
+export async function getHealthStatus(): Promise<HealthCheckResponse> {
+  return {
+    status: 'healthy',
+    timestamp: new Date().toISOString(),
+    dependencies: {
+      // Add actual dependency checks here
+      database: {
+        status: 'up',
+        latency: 5
+      }
+    }
+  };
+}

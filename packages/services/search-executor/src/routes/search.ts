@@ -79,3 +79,55 @@ router.get('/search/:executionId/results', (req, res) => {
 });
 
 export default router;
+import { Router } from 'express';
+import { SearchService } from '../services/search';
+
+const router = Router();
+const searchService = new SearchService();
+
+router.post('/search', (req, res, next) => {
+  try {
+    const status = searchService.executeSearch(req.body);
+    res.json(status);
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.get('/search/:executionId/status', (req, res, next) => {
+  try {
+    const status = searchService.getSearchStatus(req.params.executionId);
+    if (!status) {
+      res.status(404).json({
+        error: {
+          code: 'NOT_FOUND',
+          message: 'Search execution not found'
+        }
+      });
+      return;
+    }
+    res.json(status);
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.get('/search/:executionId/results', (req, res, next) => {
+  try {
+    const results = searchService.getResults(req.params.executionId);
+    if (!results) {
+      res.status(404).json({
+        error: {
+          code: 'NOT_FOUND',
+          message: 'Search results not found'
+        }
+      });
+      return;
+    }
+    res.json(results);
+  } catch (error) {
+    next(error);
+  }
+});
+
+export default router;
