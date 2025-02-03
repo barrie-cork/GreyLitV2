@@ -4,7 +4,8 @@ const config = {
   testEnvironment: 'node',
   transform: {
     '^.+\\.tsx?$': ['ts-jest', {
-      tsconfig: '<rootDir>/tsconfig.json'
+      tsconfig: '<rootDir>/tsconfig.json',
+      babelConfig: true
     }]
   },
   moduleNameMapper: {
@@ -17,7 +18,12 @@ const config = {
   moduleFileExtensions: ['ts', 'js', 'json'],
   globals: {
     'ts-jest': {
-      isolatedModules: true
+      isolatedModules: true,
+      tsconfig: {
+        jsx: 'react',
+        esModuleInterop: true,
+        allowJs: true
+      }
     }
   }
 };
