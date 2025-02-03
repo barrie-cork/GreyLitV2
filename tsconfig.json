@@ -30,6 +30,6 @@
   "references": [
     { "path": "./packages/shared/types" },
     { "path": "./packages/shared/utils" },
-    { "path": "./packages/services" }
+    { "path": "./packages/services/tsconfig.base.json" }
   ]
 }
