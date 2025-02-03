@@ -1,3 +1,5 @@
+import { jest, beforeAll, afterAll } from '@jest/globals';
+
 // Global test timeout
 jest.setTimeout(10000);
 
