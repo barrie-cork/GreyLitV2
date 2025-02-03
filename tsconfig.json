@@ -11,7 +11,7 @@
     "moduleResolution": "node",
     "baseUrl": ".",
     "paths": {
-      "@grey-lit/*": ["packages/*/src"]
+      "@grey-lit/*": ["packages/shared/*/src"]
     },
     "esModuleInterop": true,
     "skipLibCheck": true,
