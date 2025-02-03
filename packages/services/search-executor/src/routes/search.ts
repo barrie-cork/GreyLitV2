@@ -4,6 +4,11 @@ import { SearchService } from '../services/search';
 const router = Router();
 const searchService = new SearchService();
 
+// GET endpoint for testing
+router.get('/search', (_req, res) => {
+  res.json({ message: 'Search endpoint is working' });
+});
+
 router.post('/search', async (req, res) => {
   try {
     const status = await searchService.executeSearch(req.body);
