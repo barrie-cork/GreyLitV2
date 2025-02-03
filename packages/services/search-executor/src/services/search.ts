@@ -31,11 +31,13 @@ export class SearchService {
 
   executeSearch(query: SearchQuery): ExecutionStatus {
     const executionId = randomUUID();
+    const timestamp = new Date().toISOString();
     
     // Initial status using config
     const status: ExecutionStatus = {
       executionId,
       status: 'initiated',
+      timestamp,
       apiStatus: {
         serpapi: {
           enabled: this.config.apis.serpapi.enabled,

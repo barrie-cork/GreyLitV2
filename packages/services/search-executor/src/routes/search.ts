@@ -22,7 +22,11 @@ router.post('/search', (req, res) => {
       return;
     }
     const status = searchService.executeSearch(req.body);
-    res.json(status);
+    // Return both status and execution ID for easier client use
+    res.json({
+      ...status,
+      message: `Use GET /api/search/${status.executionId} to check status`,
+    });
   } catch (error) {
     res.status(500).json({ error: 'Failed to execute search' });
   }
