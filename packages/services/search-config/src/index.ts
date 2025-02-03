@@ -1,7 +1,8 @@
 import express from 'express';
+import { getEnvVarNumber } from '@grey-lit/utils';
 
 const app = express();
-const port = process.env.PORT || 3002;
+const port = getEnvVarNumber('PORT', 3002);
 
 app.get('/health', (_req, res) => {
   res.json({ status: 'healthy' });
