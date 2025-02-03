@@ -24,13 +24,7 @@ export class SearchService {
   }
 
   getSearchStatus(executionId: string): ExecutionStatus | null {
-    const status = this.activeSearches.get(executionId);
-    if (!status) {
-      // Try to find in active searches by ID
-      const searches = this.getActiveSearches();
-      return searches.find(s => s.executionId === executionId) || null;
-    }
-    return status;
+    return this.activeSearches.get(executionId);
   }
 
   executeSearch(query: SearchQuery): ExecutionStatus {

@@ -42,12 +42,17 @@ router.get('/search/:executionId', (req, res) => {
     }
 
     const status = searchService.getSearchStatus(executionId);
-    if (status) {
-      res.json(status);
+    const results = searchService.getResults(executionId);
+    
+    if (!status) {
+      res.status(404).json({ error: 'Search execution not found' });
       return;
     }
 
-    res.status(404).json({ error: 'Search execution not found' });
+    res.json({
+      ...status,
+      results: results || []
+    });
   } catch (error) {
     res.status(500).json({ error: 'Failed to get search status' });
   }
