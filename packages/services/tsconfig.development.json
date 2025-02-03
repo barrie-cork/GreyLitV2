@@ -1,14 +1,17 @@
 {
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "declarationMap": true,
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
+    /* Development Specific */
     "composite": true,
     "declaration": true,
-    "rootDir": "..",
+    "declarationMap": true,
     "inlineSources": true,
-    "preserveWatchOutput": true
+    "preserveWatchOutput": true,
+    "rootDir": "..",
+    
+    /* Relaxed Checks for Development */
+    "noUnusedLocals": false,
+    "noUnusedParameters": false
   },
   "include": [
     "./*/src/**/*"

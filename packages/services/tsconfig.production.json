@@ -1,13 +1,16 @@
 {
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
+    /* Production Optimizations */
     "sourceMap": false,
     "declarationMap": false,
     "removeComments": true,
+    "noEmitHelpers": true,
+    "importHelpers": true,
+    
+    /* Strict Checks for Production */
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "importsNotUsedAsValues": "remove",
-    "noEmitHelpers": true,
-    "importHelpers": true
+    "importsNotUsedAsValues": "remove"
   }
 }
