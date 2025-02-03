@@ -8,11 +8,11 @@ export class SearchService {
     this.activeSearches = new Map();
   }
 
-  async getActiveSearches(): Promise<ExecutionStatus[]> {
+  getActiveSearches(): ExecutionStatus[] {
     return Array.from(this.activeSearches.values());
   }
 
-  async executeSearch(query: SearchQuery): Promise<ExecutionStatus> {
+  executeSearch(query: SearchQuery): ExecutionStatus {
     const executionId = randomUUID();
     
     // Initial status
@@ -47,7 +47,7 @@ export class SearchService {
     return status;
   }
 
-  async getResults(executionId: string): Promise<SearchResult[] | null> {
+  getResults(executionId: string): SearchResult[] | null {
     const status = this.activeSearches.get(executionId);
     if (!status) {
       return null;
