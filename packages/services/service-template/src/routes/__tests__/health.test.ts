@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { createMockRequest, createMockResponse, createMockNext } from '../../__tests__/test-utils';
+import { testUtils } from '../../__tests__/test-utils';
 import healthRoutes from '../../routes/health';
 
 describe('Health Routes', () => {
@@ -8,9 +8,9 @@ describe('Health Routes', () => {
   let mockNext: jest.Mock;
 
   beforeEach(() => {
-    mockReq = createMockRequest();
-    mockRes = createMockResponse();
-    mockNext = createMockNext();
+    mockReq = testUtils.mocks.createRequest();
+    mockRes = testUtils.mocks.createResponse();
+    mockNext = testUtils.mocks.createNext();
   });
 
   it('should return health status', async () => {
