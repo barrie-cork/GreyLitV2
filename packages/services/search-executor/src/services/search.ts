@@ -24,7 +24,7 @@ export class SearchService {
   }
 
   getSearchStatus(executionId: string): ExecutionStatus | null {
-    return this.activeSearches.get(executionId);
+    return this.activeSearches.get(executionId) || null;
   }
 
   executeSearch(query: SearchQuery): ExecutionStatus {
